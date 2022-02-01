@@ -1,57 +1,75 @@
-import React from "react";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Add from "./componants/Add";
-import List from "./componants/List";
-import Pay from "./componants/Pay";
+import './App.css';
+import React from 'react';
+import Button from './composants/Button';
+import Add from './composants/Add';
+import List from './composants/List';
+import Pay from './composants/Pay';
+import Card from './composants/Card';
 
 class App extends React.Component {
-  constructor(){
+
+  constructor() {
     super();
     this.state = {
-      activeLab : "add",
+      activeTabs: 'add',
       items: []
     }
-    }
-  
-
-  renderNav(){
-    return <div>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Add</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">List</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Pay</a>
-                </li>
-              </ul>
-              <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
-              </div>
-          </div>
+    this.selectAdd = this.selectAdd.bind(this)
+    this.selectList = this.selectList.bind(this)
+    this.selectPay = this.selectPay.bind(this)
+    this.add = this.add.bind(this)
   }
+
+  selectAdd(e) {
+    console.log(e)
+    this.setState({
+      activeTabs: 'add'
+    })
+  }
+
+  selectList() {
+    this.setState({
+      activeTabs: 'list'
+    })
+  }
+
+  selectPay() {
+    this.setState({
+      activeTabs: 'pay'
+    })
+  }
+
+  add(name, price) {
+    const obj = {
+      name: name,
+      price: price
+    }
+    const newList = this.state.items
+    newList.push(obj)
+    this.setState({
+      items: newList
+    })
+  }
+
+  renderContent = () => {
+    switch(this.state.activeTabs) {
+      case 'add':
+        return <Add addItem={this.add}></Add>
+      case 'list':
+        return <List listItems={this.state.items}></List>
+      case 'pay':
+        return <Pay></Pay>
+    }
+  }
+
   render() {
     return (
-      <div className="Bakery">
-        <label>Bakery</label>
-      
-        <div className="Add">
-         <div class="form-group mx-sm-3 mb-2">
-              <label for="inputPassword2" class="sr-only">Password</label>
-              <input type="password" class="form-control" id="inputPassword2" placeholder="Password"/>
-            </div>
-            <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
-        </div>
-        <div className="list"> 
-         </div>
-        <div className="Pay"> 
-         </div>
-       
+      <div className="App" >
+        <Button onClick={this.selectAdd} isSelected={this.state.activeTabs === 'add' ? true : false}> Add </Button>
+        <Button onClick={this.selectList} isSelected={this.state.activeTabs === 'list' ? true : false}> List </Button>
+        <Button onClick={this.selectPay} isSelected={this.state.activeTabs === 'pay' ? true : false}> Pay </Button>
+
+        {this.renderContent()}
       </div>
     );
   }
