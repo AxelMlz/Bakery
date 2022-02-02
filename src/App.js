@@ -23,6 +23,7 @@ class App extends React.Component {
   selectAdd(e) {
     console.log(e)
     this.setState({
+      //si l'onglet selectionné est add change l'état en activeTabs sur add
       activeTabs: 'add'
     })
   }
@@ -38,12 +39,14 @@ class App extends React.Component {
       activeTabs: 'pay'
     })
   }
-
+// ajouter le nom et le prix du produit dans le add 
   add(name, price) {
     const obj = {
       name: name,
       price: price
     }
+    //le nom et le prix du produit vont être push   
+    //et contenu dans newList  
     const newList = this.state.items
     newList.push(obj)
     this.setState({
@@ -54,10 +57,13 @@ class App extends React.Component {
   renderContent = () => {
     switch(this.state.activeTabs) {
       case 'add':
+        //si l'onglet selectionné est add affiche le selectionneur d'items
         return <Add addItem={this.add}></Add>
       case 'list':
+        //si l'onglet selectionné est list affiche la liste des items selectionné dans add
         return <List listItems={this.state.items}></List>
       case 'pay':
+        //si l'onglet selectionné est pay affiche la liste à payé des éléments sélectionnés
         return <Pay items={this.state.items}></Pay>
     }
   }
@@ -65,6 +71,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" >
+        clique sur 
         <Button onClick={this.selectAdd} isSelected={this.state.activeTabs === 'add' ? true : false}> Add </Button>
         <Button onClick={this.selectList} isSelected={this.state.activeTabs === 'list' ? true : false}> List </Button>
         <Button onClick={this.selectPay} isSelected={this.state.activeTabs === 'pay' ? true : false}> Pay </Button>
