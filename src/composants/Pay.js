@@ -20,6 +20,7 @@ class Pay extends React.Component {
   render() {
     return (
       <div >
+        {/*en cliquant sur l'icone le nom du produit et le prix s'affiche dans la console grace à la méthode handleSelect */}
         {this.props.items.map(item =>(<Card productName={item.name} price={item.price} onClick={this.handleSelect(item.name, item.price)}></Card>))}
        <p>total : {this.state.total}</p>
        <p>totalTVA : {this.state.totalTVA}</p>
