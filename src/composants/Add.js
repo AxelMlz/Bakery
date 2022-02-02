@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
-
+//les composants liés au fichiers "parent" (App.js) sont diffusés 
+//à tous les "enfants"
 
 class Add extends React.Component {
 

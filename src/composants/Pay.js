@@ -1,6 +1,5 @@
 import "../App.css";
 import React, { Component } from 'react'
-import App from "../App.js"
 
 class Pay extends React.Component {
   constructor(){
