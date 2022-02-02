@@ -4,7 +4,7 @@ import Button from './composants/Button';
 import Add from './composants/Add';
 import List from './composants/List';
 import Pay from './composants/Pay';
-import Card from './composants/Card';
+
 
 class App extends React.Component {
 
@@ -58,7 +58,7 @@ class App extends React.Component {
       case 'list':
         return <List listItems={this.state.items}></List>
       case 'pay':
-        return <Pay></Pay>
+        return <Pay items={this.state.items}></Pay>
     }
   }
 
