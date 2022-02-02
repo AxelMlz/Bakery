@@ -7,16 +7,17 @@ class Card extends React.Component {
 
         }
    componentDidMount() {
-       fetch("https://raw.githubusercontent.com/konexio/digitous-assest/main/bakery/${this.props.productName}.png")
+       fetch(`https://raw.githubusercontent.com/konexio/digitous-assest/main/bakery/${this.props.productName}.png`)
         .then((res) => res.blob())
-        .then((res) => {URL.createObjectURL
+        .then((res) => { 
+            let resFetch = URL.createObjectURL(res)
             console.log(res);
-            this.setState(src,img);
+            this.setState({src:resFetch});
         }
    )}
     render() 
     { return(
-        <button onClick={this.props.onClick} img src={this.state.src}/>
+        <button onClick={this.props.onClick}><img src={this.state.src} /></button>
         
     )
     }

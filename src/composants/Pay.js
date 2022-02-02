@@ -1,5 +1,6 @@
 import "../App.css";
 import React, { Component } from 'react'
+import Card from './Card'
 
 class Pay extends React.Component {
   constructor(){
@@ -19,10 +20,11 @@ class Pay extends React.Component {
   render() {
     return (
       <div >
-       <p>{this.state.total}</p>
-       <p>{this.state.totalTVA}</p>
-       <p>{this.state.totalEcoTax}</p>
-       <p>{this.state.totalTTC}</p>
+        {this.props.items.map(item =>(<Card productName={item.name} price={item.price} onClick={this.handleSelect(item.name, item.price)}></Card>))}
+       <p>total : {this.state.total}</p>
+       <p>totalTVA : {this.state.totalTVA}</p>
+       <p>totalEcoTax : {this.state.totalEcoTax}</p>
+       <p>totalTTC : {this.state.totalTTC}</p>
       </div>
     );
   }
