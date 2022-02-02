@@ -1,8 +1,5 @@
-import './App.css';
 import React, { Component } from 'react'
-import Button from './composants/Button';
-import List from './composants/List';
-import Pay from './composants/Pay';
+
 
 
 class Add extends React.Component {
